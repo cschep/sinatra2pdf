@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>sinatra2pdf</title>
+  <style type="text/css" media ="screen">
+    body {
+      font: 100% Verdana, Arial, Helvetica, sans-serif;
+      background: #000000 ;
+      color: #ddd;
+      background-color: #000;
+    }
+
+    a
+    {
+      color: white;
+    }
+
+  </style> 
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+     $("#spinner").hide();
+     $("#deal").click(function() {
+      //alert("clicked");
+      $("#spinner").show();
+      $.getJSON("http://schepman.org:4567/pdf/" + encodeURIComponent($("#url").val()), 
+      function(data) {
+        $('#spinner').show();
+        $("#results").empty();
+        $("#results").html('<a href="/pdfs/' + data  + '.pdf">Download!');
+        $('#spinner').hide();
+      });
+     });
+    });
+  </script>
+</head>
+<body>
+  <h1>sinatra2pdf</h1>
+  <p>You give me a url, and I'll give you a pdf.</p>
+  <p>Deal?</p>
+  <input id="url" type="textbox" style="width: 300px;" />
+  <input id="deal" type="button" value="deal." />
+  <img id="spinner" src="/images/ajaxload.gif" />
+  <div id="results"></div>
+</body>

@@ -1,0 +1,1 @@
+A simple sinatra web service to take a url and return a pdf, uses wkhtmltopdf
